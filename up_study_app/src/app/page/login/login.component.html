@@ -1,0 +1,25 @@
+<header>
+    <h1>UP STUDY</h1>
+    <nav>
+        <a routerLink="/">Regresar</a>
+    </nav>
+</header>
+
+<section id="login" class="form-container">
+    <div class="form-card">
+        <form [formGroup] = "loginForm">
+            <h2>Iniciar sesión</h2>
+            <form>
+                <div class="form-group">
+                    <input type="email" placeholder="Correo electrónico" formControlName = "email" >
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Contraseña" formControlName = "password" >
+                </div>
+                <a (click)="onLogin()" class="btn-primary"> Inciciar sesion</a>
+                <a routerLink="/register" class="btn-primary">Regístrate</a>
+                
+            </form>
+        </form>
+    </div>
+</section>

@@ -1,0 +1,114 @@
+<header>
+    <h1>UP STUDY</h1>
+    <nav>
+        <a routerLink="/home">Inicio</a>
+        <a routerLink="/profile">Mi perfil</a>
+    </nav>
+</header>
+
+<main class="publications-container">
+    <section class="page-header">
+        <h1>Publicaciones Académicas</h1>
+        <p>Explora y comparte tus investigaciones en un entorno colaborativo</p>
+    </section>
+
+    <section class="publications-list">
+        @for (item of publications; track $index) {
+            <article class="publication-card">
+                <h2>{{item.title}}</h2>
+                <div class="publication-meta">
+                    <span><strong>Autores:</strong>{{item.authors}}</span>
+                    <span><strong>Institución:</strong>{{item.institute}}</span>
+                    <span><strong>Año:</strong> {{item.year}}</span>
+                    <span><strong>Páginas:</strong> {{item.pages}}</span>
+                </div>
+                    <div class="publication-tags">
+                        <span class="tag">{{item.keywords}}</span>
+                    </div>
+                <div class="publication-content">
+                    <p>{{item.content}}</p>
+                </div>
+                <a [href]="item.url" class="btn-primary">Archivo en formato PDF</a>
+            </article>
+        }
+        <article class="publication-card">
+            <h2>Impacto del Diseño Urbano en el Bienestar Psicológico: Un Estudio Multinivel en Ciudades Contemporáneas</h2>
+            <div class="publication-meta">
+                <span><strong>Autores:</strong> Dr. María González Rodríguez, Dr. Carlos Sánchez López</span>
+                <span><strong>Institución:</strong> Journal of Environmental Psychology</span>
+                <span><strong>Año:</strong> 2023</span>
+                <span><strong>Páginas:</strong> 20</span>
+            </div>
+            <div class="publication-tags">
+                <span class="tag">Psicología ambiental</span>
+                <span class="tag">Diseño urbano</span>
+                <span class="tag">Bienestar psicológico</span>
+            </div>
+            <div class="publication-content">
+                <p>Este estudio innovador explora la relación fundamental entre el diseño urbano y el bienestar psicológico de los habitantes de grandes ciudades. Mediante un enfoque metodológico mixto que combina métodos cuantitativos y cualitativos, los investigadores analizaron cómo diferentes elementos del entorno urbano—como espacios verdes, arquitectura, iluminación y diseño de espacios públicos—influyen significativamente en los estados emocionales y la salud mental de los ciudadanos.</p>
+            </div>
+            <a href="https://repository.ucatolica.edu.co/server/api/core/bitstreams/b492554c-a949-47cf-b4bf-fb423c1cf270/content" class="btn-primary">Archivo en formato PDF</a>
+        </article>
+
+        <article class="publication-card">
+            <h2>Neuroplasticidad y Aprendizaje: Mecanismos Cerebrales en la Adquisición de Habilidades Complejas</h2>
+            <div class="publication-meta">
+                <span><strong>Autores:</strong> Dra. Elena Martínez Vega, Dr. Javier Ruiz Cortés</span>
+                <span><strong>Institución:</strong> Neuroscience Advances</span>
+                <span><strong>Año:</strong> 2024</span>
+                <span><strong>Páginas:</strong> 23</span>
+            </div>
+            <div class="publication-tags">
+                <span class="tag">Neuroplasticidad</span>
+                <span class="tag">Aprendizaje motor</span>
+                <span class="tag">Plasticidad sináptica</span>
+            </div>
+            <div class="publication-content">
+                <p>La investigación explora los mecanismos neurales subyacentes a la adquisición de habilidades complejas, centrándose en cómo el cerebro se reorganiza y adapta durante el proceso de aprendizaje. El estudio utiliza técnicas de neuroimagen de vanguardia para desentrañar los cambios estructurales y funcionales que ocurren en el cerebro durante el aprendizaje de tareas motoras complejas.</p>
+            </div>
+            <a href="https://www.researchgate.net/profile/Diego-Rosselli/publication/322803177_Neuro_Introduccion_a_las_Neurociencias/links/5a70b5c20f7e9ba2e1cb06b7/Neuro-Introduccion-a-las-Neurociencias.pdf" class="btn-primary">Archivo en formato PDF</a>
+        </article>
+
+        <article class="publication-card">
+            <h2>Impacto de las Tecnologías de Captura de Carbono en la Mitigación del Cambio Climático</h2>
+            <div class="publication-meta">
+                <span><strong>Autores:</strong> Dr. Roberto Fernández Pérez, Dra. Ana Claudia Silva Santos</span>
+                <span><strong>Institución:</strong> Climate Change Research</span>
+                <span><strong>Año:</strong> 2024</span>
+                <span><strong>Páginas:</strong> 23</span>
+            </div>
+            <div class="publication-tags">
+                <span class="tag">Captura de carbono</span>
+                <span class="tag">Cambio climático</span>
+                <span class="tag">Tecnologías ambientales</span>
+            </div>
+            <div class="publication-content">
+                <p>El estudio realiza un análisis comparativo exhaustivo de las tecnologías emergentes de captura de carbono, evaluando su eficacia, viabilidad económica y potencial de implementación a escala global. La investigación examina diferentes métodos de captura, almacenamiento y reutilización de carbono en diversos contextos geográficos y económicos.</p>
+            </div>
+            <a href="https://repositorio.cepal.org/server/api/core/bitstreams/aeef3c8b-d59a-4aa2-b2cc-028621dd44e2/content" class="btn-primary">Archivo en formato PDF</a>
+        </article>
+
+        <article class="publication-card">
+            <h2>Energías Renovables y su Contribución a la Transición Energética Global</h2>
+            <div class="publication-meta">
+                <span><strong>Autores:</strong> Dra. Laura Méndez Ortega, Dr. Carlos Eduardo Rojas Ramírez</span>
+                <span><strong>Institución:</strong> Instituto de Energías Sostenibles</span>
+                <span><strong>Año:</strong> 2023</span>
+                <span><strong>Páginas:</strong> 18</span>
+            </div>
+            <div class="publication-tags">
+                <span class="tag">Energías renovables</span>
+                <span class="tag">Transición energética</span>
+                <span class="tag">Sostenibilidad</span>
+            </div>
+            <div class="publication-content">
+                <p>Esta investigación explora el papel clave de las energías renovables (solar, eólica e hidrógeno verde) en la reducción de emisiones de gases de efecto invernadero. El estudio analiza su escalabilidad, costos de implementación y beneficios socioeconómicos en diferentes regiones, destacando casos de éxito y desafíos pendientes para su adopción masiva.</p>
+            </div>
+            <a href="https://repository.upb.edu.co/bitstream/handle/20.500.11912/8035/Art%C3%ADculo%206.pdf?sequence=1&isAllowed=y" class="btn-primary">Archivo en formato PDF</a>
+        </article>
+    </section>
+
+    <div class="actions">
+        <a routerLink="" class="btn-secondary">Regresar</a>
+    </div>
+</main>
