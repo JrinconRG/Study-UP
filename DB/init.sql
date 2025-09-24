@@ -120,6 +120,13 @@ CREATE TABLE tbl_moderation_logs (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT now()
 );
 
+
+-- crea FK (opcional)
+ALTER TABLE tbl_account_deletion_requests
+  ADD CONSTRAINT fk_processed_by_user
+  FOREIGN KEY (processed_by) REFERENCES usuario(userId);
+
+
 -- INDICES (sugeridos)
 CREATE INDEX IF NOT EXISTS idx_documents_category ON tbl_documents(category_id);
 CREATE INDEX IF NOT EXISTS idx_documents_author ON tbl_documents(author_id);
