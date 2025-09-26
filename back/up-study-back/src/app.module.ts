@@ -3,14 +3,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 
 // Importamos Firebase y el controlador de perfil
-import { FirebaseModule } from '../up-study-back/src/auth/firebase/firebase.module';
-import { ProfileController } from '../up-study-back/src/auth/profile/profile.controller';
-
+import { FirebaseModule } from './auth/firebase/firebase.module'
+import { ProfileController } from './auth/profile/profile.controller';
+import { AuthModule } from './auth/auth.module';
 
 // Agregar AppController/AppService y UsuariosModule
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsuariosModule } from '../up-study-back/src/usuarios/usuarios.module'; // <-- ajusta si está en otra ruta
+import { UsuariosModule } from './usuarios/usuarios.module'; // <-- ajusta si está en otra ruta
 
 @Module({
   imports: [
@@ -31,6 +31,7 @@ import { UsuariosModule } from '../up-study-back/src/usuarios/usuarios.module'; 
     // Firebase 
     FirebaseModule,
     UsuariosModule,
+    AuthModule,
   ],
   controllers: [ProfileController, AppController],
   providers: [AppService],

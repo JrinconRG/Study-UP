@@ -8,12 +8,14 @@ import { FirebaseService } from '../auth/firebase/firebase.service';
 import { v4 as uuidv4 } from 'uuid';
 
 
+
 @Injectable()
 export class DocumentsService{
     constructor(
         @InjectRepository(Document)
         private readonly docRepo: Repository<Document>,
-        private readonly firebaseService: FirebaseService, ){}
+        private readonly firebaseService: FirebaseService, 
+    ){}
         
 
     findAllPublic(){
@@ -45,14 +47,14 @@ export class DocumentsService{
             resumable: false,
         });
 
-        const signedUrls = await file.getSignedUrl({
+        const [signedUrl] = await file.getSignedUrl({
         action: 'read',
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7, // 7 días
         });
 
         return {
         storagePath: destPath,
-        signedUrl: signedUrls[0],
+        signedUrl: signedUrl[0],
         };
     }
 
@@ -74,7 +76,7 @@ export class DocumentsService{
             categoryId: dto.categoryId || null,
             storageUrl: storagePath,
             fileName: file.originalname,
-            fileType: file.size,
+            fileSize: file.size,
             contentType: file.mimetype,
             publishDate: dto.publishDate ||  null,
             isPublic: dto.isPublic ?? true,

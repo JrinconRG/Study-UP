@@ -18,6 +18,9 @@ RUN npm run build
 FROM node:20-alpine AS runner
 WORKDIR /usr/src/app
 ENV NODE_ENV production
+
+# instalar cliente postgres (para pg_isready)
+RUN apk add --no-cache postgresql-client
 #copiar build y node_modules
 COPY --from=builder /usr/src/app/dist ./dist
 COPY --from=deps /usr/src/app/node_modules ./node_modules

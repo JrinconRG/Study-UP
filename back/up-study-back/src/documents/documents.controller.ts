@@ -4,7 +4,7 @@ import { FirebaseAuthGuard } from '../auth/firebase/firebase-auth.guard';
 import { DocumentsService } from './documents.service';
 import { CreateDocumentDto } from './dto/create-document.dto';
 import { memoryStorage } from 'multer';
-import { Upload } from '@google-cloud/storage/build/cjs/src/resumable-upload';
+
 
 @Controller('documents')
 export class DocumentsController {

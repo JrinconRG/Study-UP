@@ -1,7 +1,7 @@
 import { Controller, Post, Body, Req, UseGuards, Get, UnauthorizedException } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { LoginDto } from './dto/login.dto';
-import { FirebaseAuthGuard } from './firebase/firebase-auth.guard';
+import { AuthService } from '../auth.service';
+import { LoginDto } from '../dto/login.dto';
+import { FirebaseAuthGuard } from './firebase-auth.guard';
 
 @Controller('auth')
 export class AuthController {
