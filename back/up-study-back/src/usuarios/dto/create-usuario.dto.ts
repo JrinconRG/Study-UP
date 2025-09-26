@@ -5,3 +5,4 @@ export class CreateUsuarioDto {
   profileImageUrl?: string;
   roleId?: number;
   password?: string; 
+}
