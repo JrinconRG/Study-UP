@@ -22,7 +22,7 @@ export class Usuario {
   @Column({ name: 'profile_image_url', type: 'text', nullable: true })
   profileImageUrl: string | null;
 
-  @Column({ name: 'role_id', nullable: true })
+  @Column({ name: 'role_id', nullable: true , type: 'int'})
   roleId: number | null;
 
   @ManyToOne(() => Role, role => role.usuarios, { nullable: true, onDelete: 'SET NULL' })
