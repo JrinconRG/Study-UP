@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Put, Delete, UseGuards, Req } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Delete, UseGuards, Req, NotFoundException } from '@nestjs/common';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/uptade-usuario.dto';
 import { FirebaseAuthGuard } from '../auth/firebase/firebase-auth.guard';
@@ -28,6 +28,17 @@ export class UsuariosController {
 
 
     }
+    @UseGuards(FirebaseAuthGuard)
+    @Get('me') // mwtodo para buscar el usuario logueado
+    async getOrFail(@Req() req: any) {
+        const firebasePayload = req.user;
+        const user = await this.usuariosService.findByFirebaseUid(firebasePayload.uid);
+        if (!user) {
+            throw new NotFoundException('User not registered. Please register first.');
+        }
+        return user;
+        }
+
 
     
 

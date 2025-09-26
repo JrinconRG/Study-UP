@@ -1,18 +1,19 @@
 import { Injectable, NotFoundException, BadRequestException, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Usuario } from '../../../src/entities/usuario.entity';
+import { Usuario } from '../entities/usuario.entity';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/uptade-usuario.dto';
-import { Role } from '../../../src/entities/roles.entity'; // ajustar ruta si es necesario
-import { FirebaseService } from '../../../src/auth/firebase/firebase.service'; // ajustar ruta
+import { Role } from '../entities/roles.entity'; // ajustar ruta si es necesario
+import { FirebaseService } from '../auth/firebase/firebase.service'; // ajustar ruta
 import * as admin from 'firebase-admin';
 
 
 @Injectable()
 export class UsuariosService {
     constructor(
-        @InjectRepository(Usuario) private usuarioRepo: Repository<Usuario>,
+
+        @InjectRepository(Usuario)  private usuarioRepo: Repository<Usuario>,
         @InjectRepository(Role) private roleRepo: Repository<Role>,
         private firebaseService: FirebaseService,
 
@@ -29,38 +30,11 @@ export class UsuariosService {
     }
 
 
-    async findOrCreateFromFirebase(firebasePayload: any, optionalDto?: Partial<CreateUsuarioDto>) {
-    if (!firebasePayload || !firebasePayload.uid) {
-      throw new Error('Invalid firebase payload');
-    }
-
-    const uid = firebasePayload.uid;
-
-    // 1) intentar encontrar
-    let user = await this.usuarioRepo.findOne({ where: { firebaseUid: uid } });
-    if (user) return user;
-
-    // 2) crear nuevo usando info del token y opcionales
-    const dto: Partial<CreateUsuarioDto> = {
-      firebaseUid: uid,
-      email: firebasePayload.email || optionalDto?.email || null,
-      fullName: optionalDto?.fullName ?? firebasePayload.name ?? null,
-      profileImageUrl: optionalDto?.profileImageUrl ?? firebasePayload.picture ?? null,
-      roleId: optionalDto?.roleId ?? undefined,
-    };
+    async findByFirebaseUid(uid:string):Promise<Usuario|null> {
+    if (!uid) return null; 
+      const user = await this.usuarioRepo.findOne({ where: {firebaseUid:uid}});
+      return user ?? null;
     
-
-    // si opcionalDto.roleId no existe, puedes asignar role por defecto 'usuario' si quieres:
-    if (!dto.roleId) {
-      const defaultRole = await this.roleRepo.findOne({ where: { name: 'USER' } });
-      dto.roleId = defaultRole ? defaultRole.roleId : undefined;
-    }
-
-    const newUser = this.usuarioRepo.create(dto as any);
-    const savedUser = await this.usuarioRepo.save(newUser);
-    return savedUser;
-
-  
 }
 
     async update(id:number, dto:UpdateUsuarioDto){
@@ -126,8 +100,11 @@ export class UsuariosService {
     }
   }
 
+  async getRoleById(roleId: number): Promise<Role | null> {
+    if (!roleId) return null;
+    const role = await this.roleRepo.findOne({ where: { roleId }});
+    return role ?? null;
+  }
 
-    }
-
-
+}
 
