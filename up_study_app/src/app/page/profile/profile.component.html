@@ -1,17 +1,50 @@
-<header>
-    <h1>UP STUDY</h1>
-    <nav>
-        <a routerLink="/publication">Regresar</a>
-    </nav>
-</header>
-
 <main class="profile-container">
     <section class="profile-header">
-        <div class="avatar">
-            <img src="https://ui-avatars.com/api/?name=Carlos+Gómez&background=007bff&color=fff" alt="Avatar de Carlos Gómez">
-        </div>
-        <span id="username">{{username}}</span>
-        <a routerLink="/post" class="btn-primary">Publicar</a>
+    <div class="avatar">
+        <img
+        [src]="avatarUrl || 'https://ui-avatars.com/api/?name=' + (profileForm.value.full_name || 'Usuario') + '&background=007bff&color=fff'"
+        alt="Avatar de {{ profileForm.value.full_name || 'Usuario' }}"
+        />
+    </div>
+
+    <!-- FORMULARIO DE PERFIL -->
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="profile-form">
+        <!-- Nombre completo -->
+        <label>
+        Nombre completo
+        <input type="text" formControlName="full_name" placeholder="Carlos Gómez" />
+        </label>
+
+        <!-- Email (readonly si se gestiona por Firebase) -->
+        <label>
+        Email
+        <input type="email" formControlName="email" placeholder="usuario@correo.com" />
+        </label>
+
+        <!-- UID Firebase (solo visualización) -->
+        <label>
+        Firebase UID
+        <input type="text" formControlName="firebase_uid" readonly />
+        </label>
+
+        <!-- Rol (si quieres permitir edición) -->
+        <label>
+        Rol
+        <select formControlName="role_id">
+            <option [value]="null">Sin rol</option>
+            <option *ngFor="let r of roles" [value]="r.role_id">{{ r.name }}</option>
+        </select>
+        </label>
+
+        <!-- Imagen de perfil -->
+        <label>
+        URL de imagen
+        <input type="text" formControlName="profile_image_url" placeholder="https://..." />
+        </label>
+
+        <button type="submit" class="btn-primary" [disabled]="profileForm.invalid">Guardar</button>
+        <a routerLink="/post" class="btn-secondary">Publicar</a>
+    </form>
     </section>
 
     <section class="user-documents">
@@ -23,23 +56,7 @@
             <span class="document-category">Medio Ambiente</span>
         </div>
         
-        <div class="document-card">
-            <h4>Impacto del Diseño Urbano en el Bienestar Psicológico: Un Estudio Multinivel en Ciudades Contemporáneas</h4>
-            <p>Autor: Dr. María González Rodríguez, Dr. Carlos Sánchez López</p>
-            <span class="document-category">Psicología Urbana</span>
-        </div>
-        
-        <div class="document-card">
-            <h4>Neuroplasticidad y Aprendizaje: Mecanismos Cerebrales en la Adquisición de Habilidades Complejas</h4>
-            <p>Autor: Dra. Elena Martínez Vega, Dr. Javier Ruiz Cortés</p>
-            <span class="document-category">Neurociencia</span>
-        </div>
-        
-        <div class="document-card">
-            <h4>Energías Renovables y su Contribución a la Transición Energética Global</h4>
-            <p>Autor: Dra. Laura Méndez Ortega, Dr. Carlos Eduardo Rojas Ramírez</p>
-            <span class="document-category">Energía Sostenible</span>
-        </div>
+
         
     </section>
     
