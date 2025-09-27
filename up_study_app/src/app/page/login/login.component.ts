@@ -7,8 +7,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   imports: [RouterLink, ReactiveFormsModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  templateUrl: './login.component.html'
 })
 export class LoginComponent {
 
@@ -17,6 +16,8 @@ export class LoginComponent {
   router = inject(Router); 
 
   fb = inject(FormBuilder)
+
+  logoSrc: string = 'images/userempty.webp';
 
   loginForm = this.fb.group({
     email:["", [Validators.email, Validators.required]],
