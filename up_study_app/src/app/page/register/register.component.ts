@@ -2,13 +2,13 @@ import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { UsuariosService } from '../../shared/services/usuarios.service';
+import { NewUser } from './model/NewUser';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
   imports: [RouterLink, ReactiveFormsModule],
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  templateUrl: './register.component.html'
 })
 export class RegisterComponent {
 
@@ -24,8 +24,7 @@ export class RegisterComponent {
   };
 
   registryForm = this.fb.group({
-    username: ['', [Validators.minLength(6), Validators.required]],
-    name: ['', [Validators.required]],
+    fullName: ['', [Validators.required]],
     email: ['', [Validators.email, Validators.required]],
     password: ['', [Validators.required]],
     repassword: ['']
@@ -40,27 +39,24 @@ export class RegisterComponent {
       return;
     }
 
-    // ✅ Armamos el objeto que espera el backend
+    // Extraer objetos del formulario
     const formValue = this.registryForm.getRawValue();
 
-  const newUser: any = {
-    firebase_uid: '',                      
-    email: formValue.email,                 
-    full_name: formValue.name,             
-    profile_image_url: '',                  
-    role_id: null,                         
-    password: formValue.password           
-    
-  };
+    const newUser: NewUser = {
+        email: formValue.email!,                 
+        fullName: formValue.fullName!,      
+        password: formValue.password!
+    };
+
 
     this.usuariosService.register(newUser).subscribe({
       next: (response) => {
         Swal.fire({
-          text: 'Usuario registrado correctamente',
+          text: 'Usuario registrado correctamente, ya puede iniciar sesión',
           icon: 'success'
         }).then(() => {
           this.registryForm.reset();
-          this.router.navigateByUrl('publication');
+          this.router.navigateByUrl('login');
         });
       },
       error: (err) => {
@@ -72,4 +68,5 @@ export class RegisterComponent {
       }
     });
   }
+
 }

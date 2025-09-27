@@ -1,54 +1,33 @@
-<header>
-    <h1>UP STUDY</h1>
-    <nav>
-        <a routerLink="/login">Iniciar sesión</a>
-        <a routerLink="/register">Registrarse</a>
-    </nav>
-</header>
+<div class="flex h-screen w-full overflow-hidden"> <!-- pantalla completa -->
+  <app-sidebar></app-sidebar>
 
-<section id="bienvenida">
-    <div class="hero-image">
-        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Estudiantes colaborando">
-    </div>
-    <h2>Acceso gratuito e ilimitado | Documentos por carreras | Comunidad activa</h2>
-</section>
+  <!-- Contenedor principal flexible -->
+  <div class="flex-1 bg-[oklch(20.5%_0_0)]">
+    <!-- Header -->
+    <header class="flex items-center justify-between bg-[oklch(70.8%_0_0)] text-black p-4">
+      <h1 class="text-4xl font-black">Dashboard</h1>
+      <input type="text" placeholder="🔎 Search Documents"
+             class="w-1/3 bg-[oklch(40%_0_0)] text-white p-3 border rounded-3xl
+                    focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </header>
 
-<section id="documentos-recientes">
-    <h2>Documentos recientes</h2>
-    <div class="documento-grid">
-        <div class="documento">
-            <h3>Impacto de las Tecnologías de Captura de Carbono en la Mitigación del Cambio Climático</h3>
-            <p>Autor: Dr. Roberto Fernández Pérez, Dra. Ana Claudia Silva Santos</p>
-            <a routerLink="/login" class="secondary">Ver</a>
-        </div>
-        <div class="documento">
-            <h3>Impacto del Diseño Urbano en el Bienestar Psicológico: Un Estudio Multinivel en Ciudades Contemporáneas</h3>
-            <p>Autor: Dr. María González Rodríguez, Dr. Carlos Sánchez López</p>
-            <a routerLink="/login" class="secondary">Ver</a>
-        </div>
-        <div class="documento">
-            <h3>Neuroplasticidad y Aprendizaje: Mecanismos Cerebrales en la Adquisición de Habilidades Complejas</h3>
-            <p>Autor: Dra. Elena Martínez Vega, Dr. Javier Ruiz Cortés</p>
-            <a routerLink="/login" class="secondary">Ver</a>
-        </div>
-        <div class="documento">
-            <h3>Energías Renovables y su Contribución a la Transición Energética Global</h3>
-            <p>Autor: Dra. Laura Méndez Ortega, Dr. Carlos Eduardo Rojas Ramírez</p>
-            <a routerLink="/login" class="secondary">Ver</a>
-        </div>
+    <!-- Botones de filtro -->
+    <div class="flex flex-row flex-wrap items-center ml-10 w-full mt-20 gap-4 px-4">
+      <button class="text-black cursor-pointer font-bold rounded-3xl px-8 py-3 bg-white">All documents</button>
+      <button class="text-black cursor-pointer rounded-3xl px-8 py-3 bg-white">By user</button>
+      <button class="text-black cursor-pointer rounded-3xl px-8 py-3 bg-white">By course</button>
+      <button class="text-black cursor-pointer rounded-3xl px-8 py-3 bg-white">By type</button>
     </div>
-</section>
 
-<section id="imagenes-estudiantes">
-    <h2>Nuestra comunidad académica</h2>
-    <div class="galeria-estudiantes">
-        <div class="imagen">
-            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Grupo de estudio">
-            <p>Estudiantes colaborando en equipo</p>
-        </div>
-        <div class="imagen">
-            <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Biblioteca universitaria">
-            <p>Ambiente de estudio en biblioteca</p>
-        </div>
+    <!-- Tarjetas -->
+    <div class="flex flex-wrap justify-center w-full mt-10 gap-6 px-4">
+      <div role="button"
+           class="flex flex-col cursor-pointer items-center justify-center text-black text-center cursor-pointer
+                  font-bold rounded-3xl w-[280px] py-13 bg-[oklch(70.8%_0_0)]">
+        <p class="rounded-full border bg-white h-[160px] w-[160px] ">imagen</p>
+        <p class="mt-5 font-bold text-2xl">Algo</p>
+      </div>
+
     </div>
-</section>
+  </div>
+</div>

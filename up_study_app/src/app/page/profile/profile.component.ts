@@ -1,13 +1,14 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { SidebarComponent } from '../../sidebar/sidebar.component';
 import { UsuariosService } from '../../shared/services/usuarios.service'; // ⚡ Ajusta la ruta según tu proyecto
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [RouterLink,ReactiveFormsModule],
+  imports: [RouterLink,ReactiveFormsModule,SidebarComponent],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })

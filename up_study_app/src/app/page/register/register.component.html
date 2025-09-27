@@ -1,30 +1,34 @@
 
+<section id="register" class="form-container flex items-center justify-center min-h-screen rounded-lg p-4 h-full">
+    <div class="form-card bg-[oklch(60%_0_0)] flex items-center justify-center p-2 rounded-4xl shadow-lg w-full max-w-4xl h-[70%]">
+      <form [formGroup]="registryForm" class="w-full p-15" >
+        <h2 class="text-6xl font-extrabold text-center mb-4 font-handwriting p-2 m-4">Registro</h2>
+        <div class="form-group mb-6">
+          <label class="text-xl font-extrabold font-handwriting">Nombre completo</label>
+          <input type="text" placeholder="Ingrese su Nombre completo" formControlName="fullName"
+                 class="w-full bg-[oklch(40%_0_0)] text-white p-5 border rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500" >
+        </div>
+        <div class="form-group mb-4 w-full">
+          <label class="text-xl font-extrabold font-handwriting">Email</label>
+          <input type="email" placeholder="Ingrese su correo electrónico" formControlName="email"
+                 class="w-full p-5 bg-[oklch(40%_0_0)] text-white border rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500" >
+        </div>
+        <div class="form-group mb-6">
+          <label class="text-xl font-extrabold font-handwriting">Contraseña</label>
+          <input type="password" placeholder="Ingrese su contraseña" formControlName="password"
+                 class="w-full bg-[oklch(40%_0_0)] text-white p-5 border rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500" >
+        </div>
+          <div class="form-group mb-6">
+          <label class="text-xl font-extrabold font-handwriting">Repita Contraseña</label>
+          <input type="password" placeholder="Repita su contraseña" formControlName="repassword"
+                 class="w-full bg-[oklch(40%_0_0)] text-white p-5 border rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500" >
+        </div>
 
-<section id="register" class="form-container">
-    <div class="form-card">
-        <form [formGroup] = "registryForm">
-            <h2>Registro de usuario</h2>
-            <form>
-                <div class="form-group">
-                    <input type="text" id="username" placeholder="Ingrese un nombre de usuario" formControlName="username"/>
-                </div>
-                <div class="form-group">
-                    <input type="text" id="name" placeholder="Ingrese su nombre completo"formControlName="name"/>
-                </div>
-                <div class="form-group">
-                    <input type="text" id="email" placeholder="Ingrese email" formControlName="email"/>
-                </div>
-                <div class="form-group">
-                    <input type="password" id="password" placeholder="Ingrese contraseña" formControlName="password"/>
-                </div>
-                <div class="form-group">
-                    <input type="password" id="retype-password" placeholder="Ingrese contraseña" formControlName="repassword"/>
-                </div>
-                <a  (click)="onRegistry()" class="btn-primary"> Registrarse</a>
-                <a routerLink="/login" class="btn-primary">Iniciar sesión</a>
-            </form>
-        </form>
+        <div class="flex flex-col gap-4 mt-5">
+            <button (click)="onRegistry()" class="btn-primary cursor-pointer w-full text-center py-3 rounded-3xl bg-[#c026d3] text-white">Regístrate</button>
+            <a routerLink="/login" class="btn-primary w-full text-center py-3 rounded-3xl text-white hover:bg-gray-700">Iniciar sesión</a>
+          
+        </div>
+      </form>
     </div>
-</section>
-
-
+  </section>

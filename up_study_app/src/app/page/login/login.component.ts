@@ -38,7 +38,7 @@ export class LoginComponent {
     this.autService.login(email, password).subscribe({
       next:(response)=>{
         if (!!response){
-          this.router.navigateByUrl('publication');
+          this.router.navigateByUrl('');
         }
       },
       error:(error)=>{

@@ -1,63 +1,8 @@
-<main class="profile-container">
-    <section class="profile-header">
-    <div class="avatar">
-        <img
-        [src]="avatarUrl || 'https://ui-avatars.com/api/?name=' + (profileForm.value.full_name || 'Usuario') + '&background=007bff&color=fff'"
-        alt="Avatar de {{ profileForm.value.full_name || 'Usuario' }}"
-        />
-    </div>
-
-    <!-- FORMULARIO DE PERFIL -->
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="profile-form">
-        <!-- Nombre completo -->
-        <label>
-        Nombre completo
-        <input type="text" formControlName="full_name" placeholder="Carlos Gómez" />
-        </label>
-
-        <!-- Email (readonly si se gestiona por Firebase) -->
-        <label>
-        Email
-        <input type="email" formControlName="email" placeholder="usuario@correo.com" />
-        </label>
-
-        <!-- UID Firebase (solo visualización) -->
-        <label>
-        Firebase UID
-        <input type="text" formControlName="firebase_uid" readonly />
-        </label>
-
-        <!-- Rol (si quieres permitir edición) -->
-        <label>
-        Rol
-        <!--select formControlName="role_id">
-            <option [value]="null">Sin rol</option>
-            <option *ngFor="let r of roles" [value]="r.role_id">{{ r.name }}</option>
-        </select-->
-        </label>
-
-        <!-- Imagen de perfil -->
-        <label>
-        URL de imagen
-        <input type="text" formControlName="profile_image_url" placeholder="https://..." />
-        </label>
-
-        <button type="submit" class="btn-primary" [disabled]="profileForm.invalid">Guardar</button>
-        <a routerLink="/post" class="btn-secondary">Publicar</a>
-    </form>
-    </section>
-
-    <section class="user-documents">
-        <h3>Tus documentos</h3>
-
-        <div class="document-card">
-            <h4>Impacto de las Tecnologías de Captura de Carbono en la Mitigación del Cambio Climático</h4>
-            <p>Autor: Dr. Roberto Fernández Pérez, Dra. Ana Claudia Silva Santos</p>
-            <span class="document-category">Medio Ambiente</span>
-        </div>
-        
-
-        
-    </section>
-    
-</main>
+<div class="flex w-full h-full">
+  <app-sidebar></app-sidebar>
+  
+  
+  <div class="w-[80%] bg-[oklch(20.5%_0_0)]">
+    <h1 class="text-2xl font-bold mb-4">Perfil de usuario</h1>
+  </div>
+</div>
