@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 #install dependencies
 
 COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
+RUN npm ci 
 
 FROM node:20-alpine AS builder
 WORKDIR /usr/src/app
