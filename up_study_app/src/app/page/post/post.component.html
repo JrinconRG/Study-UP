@@ -1,55 +1,23 @@
-<header>
-    <h1>UP STUDY</h1>
-    <nav>
-        <a routerLink="/profile">Perfil</a>
-    </nav>
-</header>
+<div class="flex h-screen w-full overflow-hidden"> <!-- pantalla completa -->
+  <app-sidebar></app-sidebar>
 
-<section id="publicar-articulo" class="form-container">
-    <div class="form-card">
-        <form [formGroup] = "postForm">
-            <h2>Publicar Artículo de Investigación</h2>
-            <form>
-                <div class="form-group">
-                    <label >Nombre del artículo</label>
-                    <input type="text" id="itemname" placeholder="Ingrese el nombre de su artículo" formControlName = "itemname">
-                </div>
-                <div class="form-group">
-                    <label >Palabras Clave</label>
-                    <input type="text" id="keywords" placeholder="Ingrese sus palabras clave" formControlName = "keywords">
-                </div>
-                <div class="form-group">
-                    <label >Año de creación</label>
-                    <input type="text" id="creation" placeholder="Ingrese el año" formControlName = "creation">
-                </div>
-                <div class="form-group">
-                    <label >Institución</label>
-                    <input type="text" id="institution" placeholder="Ingrese su institución" formControlName = "institution">
-                </div>
-                <div class="form-group">
-                    <label >Número de páginas</label>
-                    <input type="text" id="numberpages" placeholder="Ingrese un número" formControlName = "numberpages">
-                </div>
-                <div class="form-group">
-                    <label >Área Académica</label>
-                    <input type="text" id="academicarea" placeholder="Ingrese el área académica" formControlName = "academicarea">
-                </div>
-                <div class="form-group">
-                    <label >Sinopsis</label>
-                    <input type="text" id="Sinopsis" placeholder="Ingrese un resumen pequeño de su artículo" formControlName = "Sinopsis">
-                </div>
-                <div class="form-group">
-                    <label >Link del archivo</label>
-                    <input type="url" id="filelink" placeholder="Ingrese el link de su archivo en PDF" formControlName = "filelink">
-                </div>
-                
-                <div class="form-actions">
-                    <a (click)="onPost()" class="btn-primary">Guardar</a>
-                    <a routerLink="/publication" class="btn-primary">Cancelar</a>
-                </div>
-            </form>
+  <!-- Contenedor principal flexible -->
+<div class="flex-1 bg-[oklch(20.5%_0_0)] justify-center">
+    <div class="w-[90%] ml-25 mt-20 rounded-3xl h-[40%] bg-[oklch(70.8%_0_0)] justify-center flex flex-row">
+        <form [formGroup]="form" class="w-full items-center flex flex-col">
+            <input type="text" placeholder=" Tittle" formControlName="tittle"
+             class="w-9/10 text-center bg-[oklch(40%_0_0)] mt-5 text-white border rounded-3xl
+                    focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+            <input type="text" placeholder=" Description" formControlName="description"
+             class="w-9/10 text-center bg-[oklch(40%_0_0)] text-white border mt-5 py-2 rounded-3xl
+                    focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+            <a (click)="onSubmit()" class="btn-primary w-9/10  text-center py-3 rounded-3xl mt-5 bg-[#c026d3] text-white">Upload Doc</a>
         </form>
+
     </div>
-        
-        
-</section>
+    
+
+</div>
+</div>

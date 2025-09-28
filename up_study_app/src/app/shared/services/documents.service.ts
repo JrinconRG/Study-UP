@@ -29,7 +29,7 @@ export class DocumentsService {
   uploadDocument(
     dto: any,
     file: File,
-    firebaseToken: string    // token del usuario autenticado
+    firebaseToken?: string    // token del usuario autenticado
   ): Observable<any> {
     const formData = new FormData();
 

@@ -52,5 +52,15 @@ services:
     depends_on:
       - postgres
 
+  frontend:
+    build:
+      context: ./up_study_app    # <- ajusta si tu frontend está en otra
+      dockerfile: Dockerfile
+    container_name: upstudy-frontend
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
+
 volumes:
   pgdata:

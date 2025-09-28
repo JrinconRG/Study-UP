@@ -1,56 +1,53 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { SidebarComponent } from '../../sidebar/sidebar.component';
+import { DocumentModel } from './model/DocumentModel';
 import Swal from 'sweetalert2';
 import { Post } from '../../shared/interfaces/post.interface';
 import { AuthService } from '../../shared/services/auth.service';
+import { DocumentsService } from '../../shared/services/documents.service';
 
 @Component({
   selector: 'app-post',
-  imports: [RouterLink, ReactiveFormsModule],
-  templateUrl: './post.component.html',
-  styleUrl: './post.component.css'
+  imports: [RouterLink, ReactiveFormsModule, SidebarComponent],
+  templateUrl: './post.component.html'
 })
 export class PostComponent {
 
   router = inject(Router);
-
+  documentsService = inject(DocumentsService);
   autService = inject(AuthService);
 
-  fb = inject(FormBuilder);
+  form = inject(FormBuilder).nonNullable.group({
+    tittle: ['', [Validators.required, Validators.minLength(3)]],
+    description: ['', [Validators.required, Validators.minLength(5)]],
+  });
 
-  postForm = this.fb.group({
-
-    itemname:["", [Validators.required]], 
-    keywords:["", [Validators.required]], 
-    creation:["", [Validators.required]], 
-    institution:["", [Validators.required]], 
-    numberpages:["", [Validators.required]], 
-    academicarea:["", [Validators.required]], 
-    Sinopsis:["", [Validators.required]],
-    filelink:["", [Validators.required]]
-
-  })
-
-  onPost(){
-
-    if(this.postForm.invalid){
+  onSubmit(): void {
+ 
+    if(this.form.invalid){
       Swal.fire({
-        text:'Revise los datos ingresados',
+        text:'Diligencie todos los campos',
         icon:'error'
       })
       return;
     }
 
-    const post = this.postForm.getRawValue() as Required<Post>;
+    const post: DocumentModel = {
+      title: this.form.value.tittle || 'Documento sin título',
+      description: this.form.value.description
+    };
 
-    const publication = this.autService.post(post); 
 
-    if (publication){
-      this.postForm.reset(); 
-      this.router.navigateByUrl('publication');
-    }
+    console.log(post);
+    this.documentsService.uploadDocument(post, new File([], 'dummy.txt'), '')
+    .subscribe(
+      (resp) =>
+        console.log('Documento subido con éxito', resp))
 
   }
+
+
 
 }
