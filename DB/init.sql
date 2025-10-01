@@ -21,6 +21,11 @@ CREATE TABLE tbl_roles (
   role_id SERIAL PRIMARY KEY,
   name VARCHAR(50) NOT NULL UNIQUE
 );
+--agregando los roles por defecto
+INSERT INTO tbl_roles (role_id, name) VALUES
+  (1, 'ADMIN'),
+  (2, 'USER')
+ON CONFLICT (role_id) DO NOTHING;
 
 -- USUARIOS (perfil local; autenticación con Firebase)
 CREATE TABLE tbl_usuario (
