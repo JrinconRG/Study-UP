@@ -9,5 +9,7 @@ import { FirebaseModule } from '../auth/firebase/firebase.module';
   imports: [TypeOrmModule.forFeature([Document]), FirebaseModule],
   providers: [DocumentsService],
   controllers: [DocumentsController],
+  exports: [DocumentsService],
+
 })
 export class DocumentsModule {}

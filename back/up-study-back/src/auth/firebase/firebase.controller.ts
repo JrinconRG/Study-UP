@@ -17,7 +17,6 @@ export class AuthController {
   @Get('profile')
   async profile(@Req() req: any) {
     if (!req.user) throw new UnauthorizedException();
-    // aquí deberías buscar/crear el usuario y devolverlo
     return { firebasePayload: req.user };
   }
 }

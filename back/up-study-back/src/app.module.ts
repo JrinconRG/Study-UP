@@ -4,14 +4,13 @@ import { join } from 'path';
 
 // Importamos Firebase y el controlador de perfil
 import { FirebaseModule } from './auth/firebase/firebase.module'
-import { ProfileController } from './auth/profile/profile.controller';
 import { AuthModule } from './auth/auth.module';
 
 // Agregar AppController/AppService y UsuariosModule
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsuariosModule } from './usuarios/usuarios.module'; // <-- ajusta si está en otra ruta
-
+import { DocumentsModule } from './documents/documents.module';
 @Module({
   imports: [
     // Configuración de TypeORM con Postgres
@@ -32,8 +31,9 @@ import { UsuariosModule } from './usuarios/usuarios.module'; // <-- ajusta si es
     FirebaseModule,
     UsuariosModule,
     AuthModule,
+    DocumentsModule,   
   ],
-  controllers: [ProfileController, AppController],
+  controllers: [ AppController],
   providers: [AppService],
 })
 export class AppModule {}
