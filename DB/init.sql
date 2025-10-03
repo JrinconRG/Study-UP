@@ -125,6 +125,20 @@ CREATE TABLE tbl_moderation_logs (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT now()
 );
 
+--crear categorias
+-- Categorías por defecto
+INSERT INTO tbl_categories (category_id, name, slug) VALUES
+  (1, 'Matemáticas', 'matematicas'),
+  (2, 'Ciencias Naturales', 'ciencias-naturales'),
+  (3, 'Lengua y Literatura', 'lengua-literatura'),
+  (4, 'Historia', 'historia'),
+  (5, 'Tecnología', 'tecnologia'),
+  (6, 'Ingeniería', 'ingenieria'),
+  (7, 'Derecho', 'derecho'),
+  (8, 'Medicina', 'medicina'),
+  (9, 'Economía', 'economia'),
+  (10, 'Arte y Humanidades', 'arte-humanidades')
+ON CONFLICT (category_id) DO NOTHING;
 
 -- crea FK (opcional)
 ALTER TABLE tbl_account_deletion_requests
@@ -172,3 +186,4 @@ DROP TRIGGER IF EXISTS trg_comments_updated_at ON tbl_comments;
 CREATE TRIGGER trg_comments_updated_at
 BEFORE INSERT OR UPDATE ON tbl_comments
 FOR EACH ROW EXECUTE FUNCTION update_timestamp_column();
+
