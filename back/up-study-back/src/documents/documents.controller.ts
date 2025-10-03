@@ -10,21 +10,22 @@ import { extname } from 'path';
 const FILE_SIZE_LIMIT = 10 * 1024 * 1024; // 10 MB - ajusta segun tu plan
 
 function fileFilter(req: any, file: Express.Multer.File, cb: Function) {
-  console.log('=== fileFilter RAW LOG ===');
-  console.log('req.headers[content-type]:', req.headers['content-type']);
-  console.log('req.is multipart?:', req.is && req.is('multipart/form-data'));
-  console.log('req.body keys:', Object.keys(req.body || {}));
-  console.log('file object:', JSON.stringify({
-    originalname: file?.originalname,
-    fieldname: file?.fieldname,
-    encoding: file?.encoding,
-    mimetype: file?.mimetype,
-    size: file?.size,
-    buffer_present: !!(file as any).buffer,
-    path: (file as any).path
-  }, null, 2));
-  console.log('===========================');
-  cb(null, true); // aceptar todo mientras debuggeamos
+  // aceptar solo mime types especificos
+
+  const allowedMimes = [ 'application/pdf']
+
+  // extension adicional para pdfs
+  const allowedExts = ['.pdf'];
+
+  const ext = extname(file.originalname).toLowerCase();
+  const isValidMime = allowedMimes.includes(file.mimetype);
+  const isValidExt = allowedExts.includes(ext);
+
+  if (isValidMime && isValidExt) {
+    cb(null, true);
+  } else {
+    cb(new BadRequestException(`Tipo de archivo no permitido. Solo se aceptan pdf. Recibido : ${file.mimetype}`), false);
+  }
 }
 
 
