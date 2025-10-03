@@ -21,7 +21,11 @@ ENV NODE_ENV production
 
 # instalar cliente postgres (para pg_isready)
 RUN apk add --no-cache postgresql-client
+
+# crear dir temporal para multer diskStorage
+RUN mkdir -p /tmp/uploads && chown node:node /tmp/uploads
 #copiar build y node_modules
+
 COPY --from=builder /usr/src/app/dist ./dist
 COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY package.json ./
